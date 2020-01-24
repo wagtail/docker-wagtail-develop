@@ -32,6 +32,3 @@ if [ ! -d "libs/Willow" ]; then
 else
     echo Directory libs/Willow already exists, skipping...
 fi
-
-echo Starting a vagrant machine...
-vagrant up
