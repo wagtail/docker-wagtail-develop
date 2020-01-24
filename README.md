@@ -78,9 +78,9 @@ docker exec -it docker-wagtail-develop_web_1 bash
 Getting ready to contribute
 ---------------------------
 
-Here are other actions you will likely need to do to make your first contribution to the project.
+Here are other actions you will likely need to do to make your first contribution to Wagtail.
 
-Set up git remotes to Wagtail forks (run these lines outside of the Vagrant VM):
+Set up git remotes to Wagtail forks (run these lines outside of the Docker instances, on your machine):
 
 ```sh
 cd ~/Development/wagtail-dev/wagtail
