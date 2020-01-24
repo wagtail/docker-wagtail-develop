@@ -15,6 +15,7 @@ services:
       PYTHON_PATH: /code/wagtail:/code/bakerydemo
     depends_on:
       - db
+      - frontend
   db:
     image: postgres:9.6.2-alpine
     environment:
@@ -24,3 +25,20 @@ services:
     restart: always
     expose:
       - "5432"
+  frontend:
+    image: node:9-slim
+    working_dir: /code/wagtail
+    volumes:
+      - ./wagtail:/code/wagtail:rw
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm i npm@latest -g
+        npm install
+        npm install npm-run-all
+        npm install gulp
+        npm install webpack
+        node node_modules/node-sass/scripts/install.js
+        npm rebuild node-sass
+        npm run start
