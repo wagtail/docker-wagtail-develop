@@ -93,3 +93,8 @@ git pull --all
 ```
 
 
+TODO
+----
+
+* Set up an elasticsearch service container
+* Test on Windows and Linux
