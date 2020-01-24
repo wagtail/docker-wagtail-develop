@@ -4,7 +4,17 @@ services:
   web:
     build: ./
     working_dir: /code/bakerydemo
-    command: bash -c "python manage.py migrate --noinput && python manage.py load_initial_data && python manage.py update_index && python manage.py runserver 0.0.0.0:8000"
+    command: 
+      - /bin/bash 
+      - -c 
+      - |
+        cd /code/wagtail
+        pip install -e .[testing,docs]
+        cd /code/bakerydemo
+        python manage.py migrate --noinput
+        python manage.py load_initial_data
+        python manage.py update_index
+        python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./wagtail:/code/wagtail:rw
       - ./bakerydemo:/code/bakerydemo:rw
@@ -12,7 +22,7 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgres://wagtail:changeme@postgres/wagtail
-      PYTHON_PATH: /code/wagtail:/code/bakerydemo
+      PYTHONPATH: /code/wagtail:/code/bakerydemo:$PYTHONPATH
     depends_on:
       - db
   db:
