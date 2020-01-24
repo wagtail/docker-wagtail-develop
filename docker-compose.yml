@@ -16,8 +16,8 @@ services:
         python manage.py update_index
         python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./wagtail:/code/wagtail:rw
-      - ./bakerydemo:/code/bakerydemo:rw
+      - ./wagtail:/code/wagtail:delegated,rw
+      - ./bakerydemo:/code/bakerydemo:delegated,rw
     ports:
       - "8000:8000"
     environment:
@@ -41,7 +41,7 @@ services:
       dockerfile: Dockerfile.frontend
     working_dir: /code/wagtail
     volumes:
-      - ./wagtail:/code/wagtail:rw
+      - ./wagtail:/code/wagtail:delegated,rw
     command:
       - /bin/sh
       - -c
