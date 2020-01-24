@@ -4,9 +4,9 @@ services:
   web:
     build: ./
     working_dir: /code/bakerydemo
-    command: 
-      - /bin/bash 
-      - -c 
+    command:
+      - /bin/bash
+      - -c
       - |
         cd /code/wagtail
         pip install -e .[testing,docs]
@@ -36,7 +36,9 @@ services:
     expose:
       - "5432"
   frontend:
-    image: node:9-slim
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
     working_dir: /code/wagtail
     volumes:
       - ./wagtail:/code/wagtail:rw
@@ -44,11 +46,5 @@ services:
       - /bin/sh
       - -c
       - |
-        npm i npm@latest -g
-        npm install
-        npm install npm-run-all
-        npm install gulp
-        npm install webpack
-        node node_modules/node-sass/scripts/install.js
-        npm rebuild node-sass
+        cp -r /node_modules /code/wagtail
         npm run start

@@ -1,0 +1,10 @@
+FROM node:9-slim
+LABEL maintainer="hello@wagtail.io"
+
+COPY ./wagtail/package.json ./package.json
+
+RUN npm i npm@latest -g
+RUN npm --prefix / install
+RUN npm install npm-run-all gulp webpack /
+RUN node /node_modules/node-sass/scripts/install.js
+RUN npm rebuild node-sass
