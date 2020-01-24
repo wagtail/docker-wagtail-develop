@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    build: ./
+    working_dir: /code/bakerydemo
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./wagtail:/code/wagtail:rw
+      - ./bakerydemo:/code/bakerydemo:rw
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgres://wagtail:changeme@postgres/wagtail
+    depends_on:
+      - db
+  db:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: wagtail
+      POSTGRES_DB: wagtail
+      POSTGRES_PASSWORD: changeme
+    restart: always
+    expose:
+      - "5432"
