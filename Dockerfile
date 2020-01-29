@@ -13,3 +13,6 @@ COPY ./bakerydemo/requirements/production.txt /code/requirements/production.txt
 
 RUN pip install --upgrade pip
 RUN pip install -r /code/requirements/production.txt
+
+COPY ./wagtail /code/wagtail
+RUN cd /code/wagtail && pip install -e .[testing,docs]
