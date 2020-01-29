@@ -42,10 +42,9 @@ Once setup is over,
 ```sh
 # 5. Start your container setup
 docker-compose up
-# Success!
 ```
 
-Right now you have to wait a couple of minutes for the frontend container to copy `node_modules` to the shared volume. 
+Now you have to wait a couple of minutes for the frontend container to copy `node_modules` to the shared volume. 
 When you see messages from the frontend server about building styles and javascript you can continue:
 
 ```sh
