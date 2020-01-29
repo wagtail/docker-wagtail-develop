@@ -32,9 +32,4 @@ services:
     working_dir: /code/wagtail
     volumes:
       - ./wagtail:/code/wagtail:delegated,rw
-    command:
-      - /bin/sh
-      - -c
-      - |
-        cp -r /node_modules /code/wagtail
-        npm run start
+    command: npm run start
