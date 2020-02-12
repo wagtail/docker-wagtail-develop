@@ -65,13 +65,13 @@ docker-wagtail-develop_web_1        /bin/bash -c cd /code/wagt ...   Up      0.0
 You can open a django shell session
 
 ```sh
-docker exec -it docker-wagtail-develop_web_1 python manage.py shell
+docker-compose exec web python manage.py shell
 ```
 
 You can open a shell on the web server
 
 ```sh
-docker exec -it docker-wagtail-develop_web_1 bash
+docker-compose exec web bash
 ```
 
 
