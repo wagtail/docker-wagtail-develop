@@ -40,7 +40,7 @@ Here is the resulting folder structure:
 Once setup is over,
 
 ```sh
-# 5. Start your container setup
+# 6. Start your container setup
 docker-compose up
 # Success!
 ```
