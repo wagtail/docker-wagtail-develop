@@ -17,7 +17,7 @@ Open a terminal and follow those instructions:
 # 1. Decide where to put the project. We use "~/Development" in our examples.
 cd ~/Development
 # 2. Clone the docker-wagtail-develop repository in a new "wagtail-dev" folder.
-git clone git@github.com:saevarom/docker-wagtail-develop.git wagtail-dev
+git clone git@github.com:wagtail/docker-wagtail-develop.git wagtail-dev
 # 3. Move inside the new folder.
 cd wagtail-dev/
 # 4. Run the setup script. This will check out all the dependency repos.
