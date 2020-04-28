@@ -1,4 +1,4 @@
-FROM node:9-slim
+FROM node:10-slim
 LABEL maintainer="hello@wagtail.io"
 
 COPY ./wagtail/package.json ./package.json
