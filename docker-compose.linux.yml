@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    user: ${CURRENT_UID}
+
+  frontend:
+    user: ${CURRENT_UID}
+
