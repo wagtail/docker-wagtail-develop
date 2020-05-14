@@ -45,6 +45,11 @@ docker-compose up
 # Success!
 ```
 
+If you're running this on Linux you might get into some privilege issues that can be solved using this command (tested on Ubuntu):
+```sh
+CURRENT_UID=$(id -u):$(id -g) docker-compose -f docker-compose.yml -f docker-compose.linux.yml up
+```
+
 - Visit your site at http://localhost:8000
 - The admin interface is at http://localhost:8000/admin/ - log in with `admin` / `changeme`.
 
