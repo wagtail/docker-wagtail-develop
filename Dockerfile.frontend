@@ -6,5 +6,3 @@ COPY ./wagtail/package.json ./package.json
 RUN npm i npm@latest -g
 RUN npm --prefix / install
 RUN npm install npm-run-all gulp webpack /
-RUN node /node_modules/node-sass/scripts/install.js
-RUN npm rebuild node-sass
