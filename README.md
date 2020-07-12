@@ -56,7 +56,7 @@ CURRENT_UID=$(id -u):$(id -g) docker-compose -f docker-compose.yml -f docker-com
 What you can do
 ---------------
 
-See a list of running containers
+### See a list of running containers
 
 ```sh
 $ docker-compose ps
@@ -67,18 +67,23 @@ docker-wagtail-develop_frontend_1   /bin/sh -c cp -r /node_mod ...   Up
 docker-wagtail-develop_web_1        /bin/bash -c cd /code/wagt ...   Up      0.0.0.0:8000->8000/tcp
 ```
 
-You can open a django shell session
+### You can open a django shell session
 
 ```sh
 docker-compose exec web python manage.py shell
 ```
 
-You can open a shell on the web server
+### You can open a shell on the web server
 
 ```sh
 docker-compose exec web bash
 ```
 
+### You can open a shell to work with the frontend code (Node/NPM)
+
+```sh
+docker-compose exec frontend bash
+```
 
 Getting ready to contribute
 ---------------------------
