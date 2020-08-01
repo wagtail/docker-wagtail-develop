@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+  postgres-data:
+
 services:
   web:
     build: ./
@@ -27,11 +30,13 @@ services:
       - db
       - frontend
   db:
-    image: postgres:9.6.2-alpine
+    image: postgres:12.3-alpine
     environment:
       POSTGRES_USER: wagtail
       POSTGRES_DB: wagtail
       POSTGRES_PASSWORD: changeme
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     restart: always
     expose:
       - "5432"
