@@ -77,11 +77,15 @@ web_1       | LINE 1: UPDATE "base_formfield" SET "sort_order" = 0, "clean_name"
 To fix this, open a new terminal window, exec into the container and run makemigrations:
 
 ```
-docker exec -it wagtail-dev_web_1 /bin/bash`
-`./manage.py makemigrations`
+# In the root of your wagtail-dev project folder:
+docker exec -it wagtail-dev_web_1 /bin/bash
+
+# then, at the prompt inside the container:
+./manage.py makemigrations
+./manage.py migrate
 ```
 
-Then, back in your original terminal window, stop the server (with CONTROL-C), and rerun `docker-compose up`.
+Errors in the migrations will prevent docker-compose from loading the initial data. So, return to your original terminal window, stop the server (with CONTROL-C), and rerun `docker-compose up`.
 
 What you can do
 ---------------
