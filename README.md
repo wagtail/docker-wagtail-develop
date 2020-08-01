@@ -22,7 +22,10 @@ git clone git@github.com:wagtail/docker-wagtail-develop.git wagtail-dev
 cd wagtail-dev/
 # 4. Run the setup script. This will check out all the dependency repos.
 ./setup.sh
-# 5. Build the containers
+# 5. Configure your app to use PostgreSQL via the DATABASE_URL from docker-compose.yml
+cp bakerydemo/bakerydemo/settings/local.py.docker-compose-example bakerydemo/bakerydemo/settings/local.py
+echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > bakerydemo/.env
+# 6. Build the containers
 docker-compose build
 ```
 
@@ -40,18 +43,45 @@ Here is the resulting folder structure:
 Once setup is over,
 
 ```sh
-# 6. Start your container setup
+# 7. Start your container setup
 docker-compose up
 # Success!
 ```
+
+- Visit your site at http://localhost:8000
+- The admin interface is at http://localhost:8000/admin/ - log in with `admin` / `changeme`.
+
+### Debugging
 
 If you're running this on Linux you might get into some privilege issues that can be solved using this command (tested on Ubuntu):
 ```sh
 CURRENT_UID=$(id -u):$(id -g) docker-compose -f docker-compose.yml -f docker-compose.linux.yml up
 ```
 
-- Visit your site at http://localhost:8000
-- The admin interface is at http://localhost:8000/admin/ - log in with `admin` / `changeme`.
+#### Debugging data migrations / data loading
+
+Sometimes there are model changes in Wagtail that require migrations to be created in the bakerydemo project. If so, you may see errors like the example below:
+
+```
+web_1       |   Applying wagtailusers.0009_userprofile_verbose_name_plural... OK
+db_1        | 2020-08-01 17:45:49.722 UTC [54] ERROR:  column base_formfield.clean_name does not exist at character 58
+db_1        | 2020-08-01 17:45:49.722 UTC [54] STATEMENT:  SELECT COUNT(*) AS "__count" FROM "base_formfield" WHERE "base_formfield"."clean_name" = ''
+db_1        | 2020-08-01 17:45:50.195 UTC [54] ERROR:  column "clean_name" of relation "base_formfield" does not exist at character 47
+web_1       | Traceback (most recent call last):
+web_1       |   File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 86, in _execute
+web_1       |     return self.cursor.execute(sql, params)
+web_1       | psycopg2.errors.UndefinedColumn: column "clean_name" of relation "base_formfield" does not exist
+web_1       | LINE 1: UPDATE "base_formfield" SET "sort_order" = 0, "clean_name" =...
+```
+
+To fix this, open a new terminal window, exec into the container and run makemigrations:
+
+```
+docker exec -it wagtail-dev_web_1 /bin/bash`
+`./manage.py makemigrations`
+```
+
+Then, back in your original terminal window, stop the server (with CONTROL-C), and rerun `docker-compose up`.
 
 What you can do
 ---------------
