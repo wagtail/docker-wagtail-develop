@@ -1,8 +1,8 @@
-# Don't copy the git repo, the compiled node_modules, or anything else that isn't needed into docker image.
+# Don't copy the git repos, the compiled node_modules, or anything else that isn't needed into the docker image.
 # This greatly speeds up re-building the image.
-.git
-wagtail/node_modules
-Dockerfile
-docker-compose.yml
-Procfile
-Vagrantfile
+**/.git
+**/node_modules
+**/Dockerfile
+**/docker-compose.yml
+**/Procfile
+**/Vagrantfile

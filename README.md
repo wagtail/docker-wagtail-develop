@@ -37,10 +37,12 @@ Here is the resulting folder structure:
 └── bakerydemo    # Wagtail Bakery project used for development.
 ```
 
-Once setup is over,
+Once the build is complete:
 
 ```sh
-# 6. Start your container setup
+# 6. Run one-time databse setup, which will be persisted across container executions by Docker's Volumes system
+setup-db.sh
+# 7. Start your container setup
 docker-compose up
 # Success!
 ```
