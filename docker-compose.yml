@@ -5,19 +5,10 @@ volumes:
 
 services:
   web:
+    container_name: "web"
     build: ./
     working_dir: /code/bakerydemo
-    command:
-      - /bin/bash
-      - -c
-      - |
-        cd /code/wagtail
-        pip install -e .[testing,docs]
-        cd /code/bakerydemo
-        python manage.py migrate --noinput
-        python manage.py load_initial_data
-        python manage.py update_index
-        python manage.py runserver 0.0.0.0:8000
+    command: ./manage.py runserver 0.0.0.0:8000
     volumes:
       - ./wagtail:/code/wagtail:delegated,rw
       - ./bakerydemo:/code/bakerydemo:delegated,rw
@@ -30,6 +21,7 @@ services:
       - db
       - frontend
   db:
+    container_name: "db"
     image: postgres:12.3-alpine
     environment:
       POSTGRES_USER: wagtail
@@ -41,6 +33,7 @@ services:
     expose:
       - "5432"
   frontend:
+    container_name: "frontend"
     build:
       context: .
       dockerfile: Dockerfile.frontend
@@ -51,5 +44,5 @@ services:
       - /bin/sh
       - -c
       - |
-        cp -r /node_modules /code/wagtail
+        cp -ru /node_modules /code/wagtail
         npm run start
