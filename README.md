@@ -20,7 +20,7 @@ cd ~/Development
 git clone git@github.com:wagtail/docker-wagtail-develop.git wagtail-dev
 # 3. Move inside the new folder.
 cd wagtail-dev/
-# 4. Run the setup script. This will check out all the dependency repos.
+# 4. Run the setup script. This will check out the bakerydemo project and local copies of wagtail and its dependencies.
 ./setup.sh
 # 5. Build the containers
 docker-compose build
@@ -40,10 +40,10 @@ Here is the resulting folder structure:
 Once the build is complete:
 
 ```sh
-# 6. Run one-time databse setup, which will be persisted across container executions by Docker's Volumes system
-setup-db.sh
-# 7. Start your container setup
+# 6. Start your containers and wait for them to finish their startup scripts.
 docker-compose up
+# 7. Now in a new shell, run the databse setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this commmand the first time you start the database.
+setup-db.sh
 # Success!
 ```
 
@@ -62,11 +62,11 @@ What you can do
 
 ```sh
 $ docker-compose ps
-              Name                             Command               State           Ports
----------------------------------------------------------------------------------------------------
-docker-wagtail-develop_db_1         docker-entrypoint.sh postgres    Up      5432/tcp
-docker-wagtail-develop_frontend_1   /bin/sh -c cp -r /node_mod ...   Up
-docker-wagtail-develop_web_1        /bin/bash -c cd /code/wagt ...   Up      0.0.0.0:8000->8000/tcp
+  Name                Command               State           Ports
+--------------------------------------------------------------------------
+db         docker-entrypoint.sh postgres    Up          5432/tcp
+frontend   docker-entrypoint.sh /bin/ ...   Up
+web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
 ### You can open a django shell session
