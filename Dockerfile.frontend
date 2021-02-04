@@ -1,8 +1,6 @@
 FROM node:10-slim
 LABEL maintainer="hello@wagtail.io"
 
-COPY ./wagtail/package.json ./package.json
+COPY ./wagtail/package.json ./wagtail/package-lock.json ./
 
-RUN npm i npm@latest -g
 RUN npm --prefix / install
-RUN npm install npm-run-all gulp webpack /
