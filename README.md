@@ -43,7 +43,7 @@ Once the build is complete:
 # 6. Start your containers and wait for them to finish their startup scripts.
 docker-compose up
 # 7. Now in a new shell, run the databse setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this commmand the first time you start the database.
-setup-db.sh
+./setup-db.sh
 # Success!
 ```
 
