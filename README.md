@@ -31,6 +31,7 @@ docker-compose run frontend
 ```
 When this finishes (which can take a while) terminate it (ctrl-c) before running the next step. Ideally also run docker-compose down to remove the conatiner as it's no longer needed
 
+### Build all the containers
 ```sh
 # 5. Build the containers
 docker-compose build
