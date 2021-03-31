@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   postgres-data:
@@ -44,5 +44,6 @@ services:
       - /bin/sh
       - -c
       - |
+        echo "This process can take a long time to complete..."
         cp -ru /node_modules /code/wagtail
         npm run start

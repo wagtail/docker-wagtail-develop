@@ -22,6 +22,16 @@ git clone git@github.com:wagtail/docker-wagtail-develop.git wagtail-dev
 cd wagtail-dev/
 # 4. Run the setup script. This will check out the bakerydemo project and local copies of wagtail and its dependencies.
 ./setup.sh
+```
+### Build a temporary frontend container.
+Without this step wagtail>node_modules and wagtail>wagtail>admin/static dont't exist when running the build step and are not added to the final image. (Wagtail admin will be missing the required css and js files)
+```sh
+# 4.1 
+docker-compose run frontend 
+```
+When this finishes (which can take a while) terminate it (ctrl-c) before running the next step. Ideally also run docker-compose down to remove the conatiner as it's no longer needed
+
+```sh
 # 5. Build the containers
 docker-compose build
 ```
