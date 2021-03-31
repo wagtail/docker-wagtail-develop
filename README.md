@@ -29,7 +29,13 @@ Without this step wagtail>node_modules and wagtail>wagtail>admin/static dont't e
 # 4.1 
 docker-compose run frontend 
 ```
-When this finishes (which can take a while) terminate it (ctrl-c) before running the next step. Ideally also run docker-compose down to remove the conatiner as it's no longer needed
+When this finishes (which can take a while) terminate it (ctrl-c) before running the next step.
+
+You should see something like
+```
+webpack compiled successfully in 52229 ms
+```
+Ideally also run docker-compose down to remove the conatiner as it's no longer needed.
 
 ### Build all the containers
 ```sh
