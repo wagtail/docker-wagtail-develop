@@ -9,6 +9,7 @@ services:
     build: ./
     working_dir: /code/bakerydemo
     command: ./manage.py runserver 0.0.0.0:8000
+    restart: "no"
     volumes:
       - ./wagtail:/code/wagtail:delegated,rw
       - ./bakerydemo:/code/bakerydemo:delegated,rw
@@ -29,7 +30,7 @@ services:
       POSTGRES_PASSWORD: changeme
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    restart: always
+    restart: "no"
     expose:
       - "5432"
   frontend:
@@ -46,3 +47,4 @@ services:
       - |
         cp -ru /node_modules /code/wagtail
         npm run start
+    restart: "no"
