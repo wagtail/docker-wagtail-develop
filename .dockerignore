@@ -6,3 +6,5 @@
 **/docker-compose.yml
 **/Procfile
 **/Vagrantfile
+**/.devcontainer
+**/.vscode
