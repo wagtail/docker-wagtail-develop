@@ -69,6 +69,11 @@ frontend   docker-entrypoint.sh /bin/ ...   Up
 web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
+### Run tests
+```sh
+docker-compose exec web python ../wagtail/runtests.py
+```
+
 ### You can open a django shell session
 
 ```sh
