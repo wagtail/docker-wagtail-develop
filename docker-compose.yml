@@ -16,8 +16,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgres://wagtail:changeme@db/wagtail
-      PYTHONPATH: /code/wagtail:/code/bakerydemo:$PYTHONPATH
+      DATABASE_URL: "postgres://wagtail:changeme@db/wagtail"
+      PYTHONPATH: "/code/wagtail:/code/bakerydemo:$PYTHONPATH"
     depends_on:
       - db
       - frontend
