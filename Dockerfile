@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.7-bullseye
+FROM python:3.8-bullseye
 LABEL maintainer="hello@wagtail.io"
 
 # Set environment varibles
