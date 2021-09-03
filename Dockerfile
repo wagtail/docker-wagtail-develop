@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.7
+FROM python:3.8-bullseye
 LABEL maintainer="hello@wagtail.io"
 
 # Set environment varibles
@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 # Install libenchant and create the requirements folder.
 RUN apt-get update -y \
-    && apt-get install -y libenchant-dev postgresql-client \
+    && apt-get install -y libenchant-2-dev postgresql-client \
     && mkdir -p /code/requirements
 
 # Install the bakerydemo project's dependencies into the image.
