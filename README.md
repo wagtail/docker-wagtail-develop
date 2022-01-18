@@ -42,6 +42,21 @@ Once the build is complete:
 ```sh
 # 6. Start your containers and wait for them to finish their startup scripts.
 docker-compose up
+```
+You might see a message like this the first time you run your containers. This is normal because the frontend container has not finished building the assets for the Wagtail admin. Just wait a few seconds for the frontend container to finish building and then stop and start your containers again (Ctrl+C + `docker-compose up`).
+```
+WARNINGS:
+?: (wagtailadmin.W001) CSS for the Wagtail admin is missing
+	HINT:
+            Most likely you are running a development (non-packaged) copy of
+            Wagtail and have not built the static assets -
+            see https://docs.wagtail.org/en/latest/contributing/developing.html
+
+            File not found: /code/wagtail/wagtail/admin/static/wagtailadmin/css/normalize.css```
+
+``` 
+
+```sh
 # 7. Now in a new shell, run the databse setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this commmand the first time you start the database.
 ./setup-db.sh
 # Success!
