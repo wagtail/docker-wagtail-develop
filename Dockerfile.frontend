@@ -1,4 +1,4 @@
-FROM node:14-slim
+FROM node:16-slim
 LABEL maintainer="hello@wagtail.io"
 
 RUN apt-get update && apt-get install rsync -y
