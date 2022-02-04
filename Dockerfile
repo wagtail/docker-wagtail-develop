@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8-bullseye
-LABEL maintainer="hello@wagtail.io"
+LABEL maintainer="hello@wagtail.org"
 
 # Set environment varibles
 ENV PYTHONUNBUFFERED 1

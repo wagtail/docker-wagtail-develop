@@ -1,5 +1,5 @@
 FROM node:16-slim
-LABEL maintainer="hello@wagtail.io"
+LABEL maintainer="hello@wagtail.org"
 
 RUN apt-get update && apt-get install rsync -y
 COPY ./wagtail/package.json ./wagtail/package-lock.json ./
