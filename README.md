@@ -99,7 +99,7 @@ docker-compose exec web python manage.py shell
 ### Open a PostgreSQL shell session
 
 ```sh
-docker-compose exec web dbshell
+docker-compose exec web python manage.py dbshell
 ```
 
 ### Open a shell on the web server
