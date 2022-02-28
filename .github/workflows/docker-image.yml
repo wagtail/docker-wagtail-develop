@@ -16,6 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        git clone https://github.com/wagtail/docker-wagtail-develop.git wagtail-dev
-        cd wagtail-dev
+        ./setup.sh
         docker build . --file Dockerfile --tag docker-wagtail-develop:$(date +%s)
