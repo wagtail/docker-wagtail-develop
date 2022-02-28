@@ -54,7 +54,7 @@ WARNINGS:
 
             File not found: /code/wagtail/wagtail/admin/static/wagtailadmin/css/normalize.css```
 
-``` 
+```
 
 ```sh
 # 7. Now in a new shell, run the databse setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this commmand the first time you start the database.
@@ -85,23 +85,30 @@ web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
 ### Run tests
+
 ```sh
 docker-compose exec -w /code/wagtail web python runtests.py
 ```
 
-### You can open a django shell session
+### Open a Django shell session
 
 ```sh
 docker-compose exec web python manage.py shell
 ```
 
-### You can open a shell on the web server
+### Open a PostgreSQL shell session
+
+```sh
+docker-compose exec web dbshell
+```
+
+### Open a shell on the web server
 
 ```sh
 docker-compose exec web bash
 ```
 
-### You can open a shell to work with the frontend code (Node/NPM)
+### Open a shell to work with the frontend code (Node/NPM)
 
 ```sh
 docker-compose exec frontend bash
