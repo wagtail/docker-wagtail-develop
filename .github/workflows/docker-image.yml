@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        git clone https://github.com/wagtail/docker-wagtail-develop.git wagtail-dev
+        cd wagtail-dev
+        docker build . --file Dockerfile --tag docker-wagtail-develop:$(date +%s)
