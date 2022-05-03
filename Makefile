@@ -4,7 +4,7 @@ build: ## Build the backend Docker image
 up: ## Bring the backend Docker container up
 	docker-compose up
 
-down: ## Stop the backend Docker container
+stop: ## Stop the backend Docker container
 	docker-compose stop
 
 ssh: ## Enter the running backend Docker container for the wagtail bakery site
@@ -22,7 +22,7 @@ ssh-wagtail: ## Enter the running Docker container for the wagtail development e
 ssh-db: ## Open a PostgreSQL shell session
 	docker-compose exec web python manage.py dbshell
 
-clean: ## Stop and remove all Docker containers
+down: ## Stop and remove all Docker containers
 	docker-compose down
 
 migrations: ## Make migrations to the wagtail bakery site
