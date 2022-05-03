@@ -86,37 +86,75 @@ frontend   docker-entrypoint.sh /bin/ ...   Up
 web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
+### Build the backend Docker image
+```
+make build
+```
+
+### Bring the backend Docker container up
+```
+make up
+```
+
+### Stop the backend Docker container
+```
+make down
+```
+	
 ### Run tests
 
 ```sh
-docker-compose exec -w /code/wagtail web python runtests.py
+make test
+```
+
+### Run tests for a specific file
+
+```
+make test file=wagtail.admin.tests.test_name.py
 ```
 
 ### Open a Django shell session
 
 ```sh
-docker-compose exec web python manage.py shell
+make ssh-shell
 ```
 
 ### Open a PostgreSQL shell session
 
 ```sh
-docker-compose exec web python manage.py dbshell
+make ssh-db
 ```
 
 ### Open a shell on the web server
 
 ```sh
-docker-compose exec web bash
+make ssh
 ```
 
 ### Open a shell to work with the frontend code (Node/NPM)
 
 ```sh
-docker-compose exec frontend bash
+make ssh-fe
 ```
 
-Getting ready to contribute
+### Open a shell to work with the frontend code (Node/NPM)
+
+```sh
+make ssh-fe
+```
+
+### Make migrations to the wagtail bakery site
+
+```
+make migrations
+```
+
+### Migrate the wagtail bakery site
+
+```
+make migrate
+```
+
 ---------------------------
 
 Here are other actions you will likely need to do to make your first contribution to Wagtail.

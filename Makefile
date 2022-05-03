@@ -13,17 +13,17 @@ ssh: ## Enter the running backend Docker container for the wagtail bakery site
 ssh-shell: ## Enter the running Docker container shell
 	docker-compose exec web python manage.py shell
 
-ssh-frontend: ## Enter the running Docker container shell
+ssh-fe: ## Open a shell to work with the frontend code (Node/NPM)
 	docker-compose exec frontend bash
 
 ssh-wagtail: ## Enter the running Docker container for the wagtail development environment
 	docker-compose exec -w /code/wagtail web bash
 
+ssh-db: ## Open a PostgreSQL shell session
+	docker-compose exec web python manage.py dbshell
+
 clean: ## Stop and remove all Docker containers
 	docker-compose down
-
-run-tests: ## Stop and remove all Docker containers
-	docker-compose exec -w /code/wagtail web python runtests.py
 
 migrations: ## Make migrations to the wagtail bakery site
 	docker-compose exec web python manage.py makemigrations
