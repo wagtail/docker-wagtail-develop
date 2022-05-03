@@ -87,7 +87,6 @@ web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
 ### Build the backend Docker image
-
 ```sh
 make build
 ```
@@ -95,10 +94,16 @@ make build
 ### Bring the backend Docker container up
 
 ```sh
-make up
+make start
 ```
 
-### Stop the backend Docker container
+### Stop all Docker containers
+
+```sh
+make stop
+```
+
+### Stop all and remove all Docker containers
 
 ```sh
 make down

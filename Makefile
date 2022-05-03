@@ -1,7 +1,16 @@
+.PHONY: help
+.DEFAULT_GOAL := help
+
+help: ## ⁉️ - Display help comments for each make command
+	@grep -E '^[0-9a-zA-Z_-]+:.*? .*$$'  \
+		$(MAKEFILE_LIST)  \
+		| awk 'BEGIN { FS=":.*?## " }; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'  \
+		| sort
+
 build: ## Build the backend Docker image
 	docker-compose build web
 
-up: ## Bring the backend Docker container up
+start: ## Bring the backend Docker container up
 	docker-compose up
 
 stop: ## Stop the backend Docker container
