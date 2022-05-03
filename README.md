@@ -87,17 +87,20 @@ web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
 ### Build the backend Docker image
-```
+
+```sh
 make build
 ```
 
 ### Bring the backend Docker container up
-```
+
+```sh
 make up
 ```
 
 ### Stop the backend Docker container
-```
+
+```sh
 make down
 ```
 	
@@ -109,7 +112,7 @@ make test
 
 ### Run tests for a specific file
 
-```
+```sh
 make test file=wagtail.admin.tests.test_name.py
 ```
 
@@ -145,13 +148,13 @@ make ssh-fe
 
 ### Make migrations to the wagtail bakery site
 
-```
+```sh
 make migrations
 ```
 
 ### Migrate the wagtail bakery site
 
-```
+```sh
 make migrate
 ```
 
