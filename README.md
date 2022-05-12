@@ -86,14 +86,70 @@ frontend   docker-entrypoint.sh /bin/ ...   Up
 web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
+### Build the backend Docker image
+```sh
+make build
+```
+or
+```sh
+docker-compose build web
+```
+
+### Bring the backend Docker container up
+
+```sh
+make start
+```
+or
+```sh
+docker-compose up
+```
+
+### Stop all Docker containers
+
+```sh
+make stop
+```
+or
+```sh
+docker-compose stop
+```
+### Stop all and remove all Docker containers
+
+```sh
+make down
+```
+or
+```sh
+docker-compose down
+```
+	
 ### Run tests
 
+```sh
+make test
+```
+or
 ```sh
 docker-compose exec -w /code/wagtail web python runtests.py
 ```
 
+### Run tests for a specific file
+
+```sh
+make test file=wagtail.admin.tests.test_name.py
+```
+or
+```sh
+docker-compose exec -w /code/wagtail web python runtests.py wagtail.admin.tests.{test_file_name_here}.py
+```
+
 ### Open a Django shell session
 
+```sh
+make ssh-shell
+```
+or
 ```sh
 docker-compose exec web python manage.py shell
 ```
@@ -101,11 +157,18 @@ docker-compose exec web python manage.py shell
 ### Open a PostgreSQL shell session
 
 ```sh
+make ssh-db
+```
+or
+```sh
 docker-compose exec web python manage.py dbshell
 ```
-
 ### Open a shell on the web server
 
+```sh
+make ssh
+```
+or
 ```sh
 docker-compose exec web bash
 ```
@@ -113,7 +176,41 @@ docker-compose exec web bash
 ### Open a shell to work with the frontend code (Node/NPM)
 
 ```sh
+make ssh-fe
+```
+or
+```sh
 docker-compose exec frontend bash
+```
+
+### Open a shell to work within the wagtail container
+
+```sh
+make ssh-fe
+```
+or
+```sh
+docker-compose exec -w /code/wagtail web bash
+```
+
+### Make migrations to the wagtail bakery site
+
+```sh
+make migrations
+```
+or
+```sh
+docker-compose exec web python manage.py makemigrations
+```
+
+### Migrate the wagtail bakery site
+
+```sh
+make migrate
+```
+or
+```sh
+docker-compose exec web python manage.py migrate
 ```
 
 Getting ready to contribute
