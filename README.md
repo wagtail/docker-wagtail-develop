@@ -133,6 +133,12 @@ git remote add upstream git@github.com:wagtail/wagtail.git
 git pull --all
 ```
 
+Contributing to Willow
+----------------------
+
+You can use the same setup to contribute to Willow.
+You simply do the same operations to fork the Willow project and point your local copy of Willow to your fork.
+
 
 TODO
 ----
