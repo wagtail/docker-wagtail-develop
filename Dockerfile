@@ -23,6 +23,6 @@ RUN cd /code/wagtail/ \
 
 # Install Willow from the host. This folder will be overwritten by a volume mount during run time (so that code
 # changes show up immediately), but it also needs to be copied into the image now so that Willow can be pip install'd.
-COPY ./libs/willow /code/willow/
+COPY ./libs/Willow /code/willow/
 RUN cd /code/willow/ \
     && pip install -e .[testing]
