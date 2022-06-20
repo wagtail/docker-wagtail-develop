@@ -21,8 +21,8 @@ COPY ./wagtail /code/wagtail/
 RUN cd /code/wagtail/ \
     && pip install -e .[testing,docs]
 
-# Install Willow from the host. This folder will be overwritten by a volume mount during run time (so that code
-# changes show up immediately), but it also needs to be copied into the image now so that Willow can be pip install'd.
-COPY ./libs/Willow /code/willow/
-RUN cd /code/willow/ \
-    && pip install -e .[testing]
+# Install Willow and possibly other dependencies from the host. This folder will be overwritten by a volume mount during 
+# run time (so that code changes show up immediately), but it also needs to be copied into the image now so that Willow 
+# can be pip install'd.
+COPY ./libs /code/libs
+RUN cd /code/libs/ && pip install -e $(find * -maxdepth 0 -type d)
