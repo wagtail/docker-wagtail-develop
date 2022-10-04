@@ -8,3 +8,8 @@
 **/Vagrantfile
 **/.devcontainer
 **/.vscode
+**/.tox
+**/build/
+**/dist/
+**/venv/
+**/.venv/
