@@ -9,7 +9,7 @@ services:
     container_name: "web"
     build: ./
     working_dir: /code/bakerydemo
-    command: ./manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     restart: "no"
     volumes:
       - ./wagtail:/code/wagtail:delegated,rw
