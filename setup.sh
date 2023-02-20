@@ -43,5 +43,5 @@ fi
 # Create a blank .env file in bakerydemo to keep its settings files from complaining
 if [ ! -f bakerydemo/.env ]; then
     echo "Creating file for local environment variables"
-    echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > bakerydemo/.env
+    touch bakerydemo/.env
 fi
