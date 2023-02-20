@@ -37,7 +37,11 @@ fi
 # Set up bakerydemo to use the Postgres database in the sister container
 if [ ! -f bakerydemo/bakerydemo/settings/local.py ]; then
     echo "Creating local settings file"
-    cp bakerydemo/bakerydemo/settings/local.py.docker-compose-example bakerydemo/bakerydemo/settings/local.py
+    cat << EOF >> $PROJECT_DIR/bakerydemo/bakerydemo/settings/local.py
+import dj_database_url
+
+DATABASES = {"default": dj_database_url.config(conn_max_age=500)}
+EOF
 fi
 
 # Create a blank .env file in bakerydemo to keep its settings files from complaining
