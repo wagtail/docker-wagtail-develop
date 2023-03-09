@@ -230,12 +230,14 @@ git remote add upstream git@github.com:wagtail/wagtail.git
 git pull --all
 ```
 
-Contributing to Willow
-----------------------
+Contributing to Willow and other Wagtail dependencies
+-----------------------------------------------------
 
-You can use the same setup to contribute to Willow.
+You can use the same setup to contribute to Willow and other Wagtail dependencies.
 You simply do the same operations to fork the Willow project and point your local copy of Willow to your fork.
 
+You can add dependencies by cloning the repository into the `libs` folder and then rebuild your container.
+The Dockerfile should pick up your library and install it from the local source.
 
 TODO
 ----
