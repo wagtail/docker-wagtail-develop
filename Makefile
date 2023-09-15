@@ -42,3 +42,12 @@ migrate: ## Migrate the wagtail bakery site migrations
 
 test: ## Run all wagtail tests or pass in a file with `make test file=wagtail.admin.tests.test_name`
 	docker-compose exec -w /code/wagtail web python runtests.py $(file) $(FILE)
+
+format-wagtail: ## Format Wagtail repo
+	docker-compose exec -w /code/wagtail web make format-server
+	docker-compose exec frontend make format-client
+
+lint-wagtail: ## Lint the Wagtail repo (server, client, docs)
+	docker-compose exec -w /code/wagtail web make lint-server
+	docker-compose exec -w /code/wagtail web make lint-docs
+	docker-compose exec frontend make lint-client
