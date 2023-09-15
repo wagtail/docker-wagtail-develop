@@ -1,7 +1,7 @@
 FROM node:18-slim
 LABEL maintainer="hello@wagtail.org"
 
-RUN apt-get update && apt-get install rsync -y
+RUN apt-get update && apt-get install rsync make -y
 COPY ./wagtail/package.json ./wagtail/package-lock.json ./
 
 RUN npm --prefix / install --loglevel info
