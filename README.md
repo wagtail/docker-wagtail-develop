@@ -154,7 +154,30 @@ make test file=wagtail.admin.tests.test_name.py
 or
 
 ```sh
-docker-compose exec -w /code/wagtail web python runtests.py wagtail.admin.tests.{test_file_name_here}.py
+docker-compose exec -w /code/wagtail web python runtests.py wagtail.admin.tests.{test_file_name_here}
+```
+
+### Format Wagtail codebase
+
+```sh
+make format-wagtail
+```
+or
+```sh
+docker-compose exec -w /code/wagtail web make format-server
+docker-compose exec frontend make format-client
+```
+
+### Lint Wagtail codebase
+
+```sh
+make lint-wagtail
+```
+or
+```sh
+docker-compose exec -w /code/wagtail web make lint-server
+docker-compose exec -w /code/wagtail web make lint-docs
+docker-compose exec frontend make lint-client
 ```
 
 ### Open a Django shell session
