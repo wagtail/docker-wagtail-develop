@@ -235,10 +235,3 @@ Contributing to Willow
 
 You can use the same setup to contribute to Willow.
 You simply do the same operations to fork the Willow project and point your local copy of Willow to your fork.
-
-
-TODO
-----
-
-* Set up an elasticsearch service container
-* Test on Windows and Linux
