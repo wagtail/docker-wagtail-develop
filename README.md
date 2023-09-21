@@ -1,13 +1,10 @@
-docker-wagtail-develop
-======================
-
+# docker-wagtail-develop
 
 A script to painlessly set up a Docker environment for development of Wagtail - inspired by [vagrant-wagtail-develop](https://github.com/wagtail/vagrant-wagtail-develop)
 
 Initial work in Bristol sprint January 2020 by [esperk](https://github.com/esperk) and [saevarom](https://github.com/saevarom).
 
-Setup
------
+## Setup
 
 **Requirements:** [Docker](https://www.docker.com/) and Docker Compose (Docker Compose is included with Docker Desktop for Mac and Windows).
 
@@ -43,8 +40,10 @@ Once the build is complete:
 # 6. Start your containers and wait for them to finish their startup scripts.
 docker-compose up
 ```
+
 You might see a message like this the first time you run your containers. This is normal because the frontend container has not finished building the assets for the Wagtail admin. Just wait a few seconds for the frontend container to finish building (you should see a message like `webpack compiled successfully in 15557 ms` and then stop and start your containers again (Ctrl+C + `docker-compose up`).
-```
+
+````
 WARNINGS:
 ?: (wagtailadmin.W001) CSS for the Wagtail admin is missing
 	HINT:
@@ -54,7 +53,7 @@ WARNINGS:
 
             File not found: /code/wagtail/wagtail/admin/static/wagtailadmin/css/normalize.css```
 
-```
+````
 
 ```sh
 # 7. Now in a new shell, run the databse setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this commmand the first time you start the database.
@@ -63,6 +62,7 @@ WARNINGS:
 ```
 
 If you're running this on Linux you might get into some privilege issues that can be solved using this command (tested on Ubuntu):
+
 ```sh
 CURRENT_UID=$(id -u):$(id -g) docker-compose -f docker-compose.yml -f docker-compose.linux.yml up
 ```
@@ -72,8 +72,7 @@ Alternatively, if you're using VSCode and have the "Remote - Containers" extensi
 - Visit your site at http://localhost:8000
 - The admin interface is at http://localhost:8000/admin/ - log in with `admin` / `changeme`.
 
-What you can do
----------------
+## What you can do
 
 ### See a list of running containers
 
@@ -87,10 +86,13 @@ web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
 ```
 
 ### Build the backend Docker image
+
 ```sh
 make build
 ```
+
 or
+
 ```sh
 docker-compose build web
 ```
@@ -100,7 +102,9 @@ docker-compose build web
 ```sh
 make start
 ```
+
 or
+
 ```sh
 docker-compose up
 ```
@@ -110,26 +114,33 @@ docker-compose up
 ```sh
 make stop
 ```
+
 or
+
 ```sh
 docker-compose stop
 ```
+
 ### Stop all and remove all Docker containers
 
 ```sh
 make down
 ```
+
 or
+
 ```sh
 docker-compose down
 ```
-	
+
 ### Run tests
 
 ```sh
 make test
 ```
+
 or
+
 ```sh
 docker-compose exec -w /code/wagtail web python runtests.py
 ```
@@ -139,7 +150,9 @@ docker-compose exec -w /code/wagtail web python runtests.py
 ```sh
 make test file=wagtail.admin.tests.test_name.py
 ```
+
 or
+
 ```sh
 docker-compose exec -w /code/wagtail web python runtests.py wagtail.admin.tests.{test_file_name_here}.py
 ```
@@ -149,7 +162,9 @@ docker-compose exec -w /code/wagtail web python runtests.py wagtail.admin.tests.
 ```sh
 make ssh-shell
 ```
+
 or
+
 ```sh
 docker-compose exec web python manage.py shell
 ```
@@ -159,16 +174,21 @@ docker-compose exec web python manage.py shell
 ```sh
 make ssh-db
 ```
+
 or
+
 ```sh
 docker-compose exec web python manage.py dbshell
 ```
+
 ### Open a shell on the web server
 
 ```sh
 make ssh
 ```
+
 or
+
 ```sh
 docker-compose exec web bash
 ```
@@ -178,7 +198,9 @@ docker-compose exec web bash
 ```sh
 make ssh-fe
 ```
+
 or
+
 ```sh
 docker-compose exec frontend bash
 ```
@@ -188,7 +210,9 @@ docker-compose exec frontend bash
 ```sh
 make ssh-fe
 ```
+
 or
+
 ```sh
 docker-compose exec -w /code/wagtail web bash
 ```
@@ -198,7 +222,9 @@ docker-compose exec -w /code/wagtail web bash
 ```sh
 make migrations
 ```
+
 or
+
 ```sh
 docker-compose exec web python manage.py makemigrations
 ```
@@ -208,13 +234,14 @@ docker-compose exec web python manage.py makemigrations
 ```sh
 make migrate
 ```
+
 or
+
 ```sh
 docker-compose exec web python manage.py migrate
 ```
 
-Getting ready to contribute
----------------------------
+## Getting ready to contribute
 
 Here are other actions you will likely need to do to make your first contribution to Wagtail.
 
@@ -230,8 +257,7 @@ git remote add upstream git@github.com:wagtail/wagtail.git
 git pull --all
 ```
 
-Contributing to Willow
-----------------------
+## Contributing to Willow
 
 You can use the same setup to contribute to Willow.
 You simply do the same operations to fork the Willow project and point your local copy of Willow to your fork.
