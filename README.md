@@ -57,7 +57,7 @@ WARNINGS:
 ```
 
 ```sh
-# 7. Now in a new shell, run the databse setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this commmand the first time you start the database.
+# 7. Now in a new shell, run the database setup script. The database will be persisted across container executions by Docker's Volumes system so you will only need to run this command the first time you start the database.
 ./setup-db.sh
 # Success!
 ```
