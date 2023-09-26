@@ -284,3 +284,7 @@ git pull --all
 
 You can use the same setup to contribute to Willow.
 You simply do the same operations to fork the Willow project and point your local copy of Willow to your fork.
+
+## See also
+
+- [Vagrant Wagtail development](https://github.com/wagtail/vagrant-wagtail-develop)
