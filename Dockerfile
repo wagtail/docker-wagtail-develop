@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-bullseye
+FROM nikolaik/python-nodejs:python3.11-nodejs20-slim
 LABEL maintainer="hello@wagtail.org"
 
 # Set environment varibles
@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 # Install libenchant and create the requirements folder.
 RUN apt-get update -y \
-    && apt-get install -y libenchant-2-dev postgresql-client \
+    && apt-get install -y libenchant-2-dev postgresql-client libpq-dev gcc \
     && mkdir -p /code/requirements
 
 # Install the bakerydemo project's dependencies into the image.
@@ -26,3 +26,7 @@ RUN cd /code/wagtail/ \
 COPY ./libs/Willow /code/willow/
 RUN cd /code/willow/ \
     && pip install -e .[testing]
+
+# Copy the npm dependencies and install them.
+COPY ./wagtail/package.json ./wagtail/package-lock.json ./
+RUN npm --prefix / install --loglevel info
