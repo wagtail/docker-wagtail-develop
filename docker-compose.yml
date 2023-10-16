@@ -22,7 +22,6 @@ services:
       PYTHONPATH: "/code/wagtail:/code/bakerydemo:$PYTHONPATH"
     depends_on:
       - db
-      # - frontend
   db:
     container_name: "db"
     image: postgres:12.3-alpine
