@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 # Install libenchant and create the requirements folder.
 RUN apt-get update -y \
-    && apt-get install -y libenchant-2-dev postgresql-client libpq-dev gcc \
+    && apt-get install -y libenchant-2-dev postgresql-client libpq-dev gcc make git \
     && mkdir -p /code/requirements
 
 # Install the bakerydemo project's dependencies into the image.
