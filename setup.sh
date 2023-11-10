@@ -37,11 +37,11 @@ fi
 # Set up bakerydemo to use the Postgres database in the sister container
 if [ ! -f bakerydemo/bakerydemo/settings/local.py ]; then
     echo "Creating local settings file"
-    cp bakerydemo-settings-local.py.example bakerydemo/bakerydemo/settings/local.py
+    cp bakerydemo/bakerydemo/settings/local.py.example bakerydemo/bakerydemo/settings/local.py
 fi
 
 # Create a blank .env file in bakerydemo to keep its settings files from complaining
 if [ ! -f bakerydemo/.env ]; then
     echo "Creating file for local environment variables"
-    echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > bakerydemo/.env
+    echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.dev" > bakerydemo/.env
 fi
