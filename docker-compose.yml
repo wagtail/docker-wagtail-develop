@@ -9,7 +9,7 @@ services:
     container_name: "web"
     build: ./
     working_dir: /code/bakerydemo
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "cd /code/wagtail && npm run start & python manage.py runserver 0.0.0.0:8000"
     restart: "no"
     volumes:
       - ./wagtail:/code/wagtail:delegated,rw
@@ -22,7 +22,6 @@ services:
       PYTHONPATH: "/code/wagtail:/code/bakerydemo"
     depends_on:
       - db
-      - frontend
   db:
     container_name: "db"
     image: postgres:12.3-alpine
@@ -35,15 +34,3 @@ services:
     restart: "no"
     expose:
       - "5432"
-  frontend:
-    container_name: "frontend"
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    working_dir: /code/wagtail
-    volumes:
-      - ./wagtail:/code/wagtail:delegated,rw
-      - node_modules:/code/wagtail/node_modules/
-    command: bash -c "echo 'Copying node_modules, this may take a few minutes...' && rsync -rah --info=progress2 /node_modules /code/wagtail/ && npm run start"
-    restart: "no"
-    tty: true
