@@ -1,8 +1,8 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-bullseye
+FROM python:3.9-bullseye
 LABEL maintainer="hello@wagtail.org"
 
-# Set environment varibles
+# Set environment variables
 ENV PYTHONUNBUFFERED 1
 
 # Install libenchant and create the requirements folder.
@@ -26,3 +26,5 @@ RUN cd /code/wagtail/ \
 COPY ./libs/Willow /code/willow/
 RUN cd /code/willow/ \
     && pip install -e .[testing]
+
+WORKDIR /code/bakerydemo

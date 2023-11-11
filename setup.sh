@@ -33,6 +33,10 @@ else
     echo Directory libs/Willow already exists, skipping...
 fi
 
+if [ ! -f .env ]; then
+    echo "Creating file for `docker compose` environment variables"
+    cp .env.example .env
+fi
 
 # Set up bakerydemo to use the Postgres database in the sister container
 if [ ! -f bakerydemo/bakerydemo/settings/local.py ]; then

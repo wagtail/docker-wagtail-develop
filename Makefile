@@ -8,46 +8,46 @@ help: ## ⁉️ - Display help comments for each make command
 		| sort
 
 build: ## Build the backend Docker image
-	docker-compose build web
+	docker compose build web
 
 start: ## Bring the backend Docker container up
-	docker-compose up
+	docker compose up
 
 stop: ## Stop the backend Docker container
-	docker-compose stop
+	docker compose stop
 
 ssh: ## Enter the running backend Docker container for the wagtail bakery site
-	docker-compose exec web bash
+	docker compose exec web bash
 
 ssh-shell: ## Enter the running Docker container shell
-	docker-compose exec web python manage.py shell
+	docker compose exec web python manage.py shell
 
 ssh-fe: ## Open a shell to work with the frontend code (Node/NPM)
-	docker-compose exec frontend bash
+	docker compose exec frontend bash
 
 ssh-wagtail: ## Enter the running Docker container for the wagtail development environment
-	docker-compose exec -w /code/wagtail web bash
+	docker compose exec -w /code/wagtail web bash
 
 ssh-db: ## Open a PostgreSQL shell session
-	docker-compose exec web python manage.py dbshell
+	docker compose exec web python manage.py dbshell
 
 down: ## Stop and remove all Docker containers
-	docker-compose down
+	docker compose down
 
 migrations: ## Make migrations to the wagtail bakery site
-	docker-compose exec web python manage.py makemigrations
+	docker compose exec web python manage.py makemigrations
 
 migrate: ## Migrate the wagtail bakery site migrations
-	docker-compose exec web python manage.py migrate
+	docker compose exec web python manage.py migrate
 
 test: ## Run all wagtail tests or pass in a file with `make test file=wagtail.admin.tests.test_name`
-	docker-compose exec -w /code/wagtail web python runtests.py $(file) $(FILE)
+	docker compose exec -w /code/wagtail web python runtests.py $(file) $(FILE)
 
 format-wagtail: ## Format Wagtail repo
-	docker-compose exec -w /code/wagtail web make format-server
-	docker-compose exec frontend make format-client
+	docker compose exec -w /code/wagtail web make format-server
+	docker compose exec frontend make format-client
 
 lint-wagtail: ## Lint the Wagtail repo (server, client, docs)
-	docker-compose exec -w /code/wagtail web make lint-server
-	docker-compose exec -w /code/wagtail web make lint-docs
-	docker-compose exec frontend make lint-client
+	docker compose exec -w /code/wagtail web make lint-server
+	docker compose exec -w /code/wagtail web make lint-docs
+	docker compose exec frontend make lint-client
