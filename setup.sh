@@ -34,7 +34,7 @@ else
 fi
 
 if [ ! -f .env ]; then
-    echo "Creating file for `docker compose` environment variables"
+    echo "Creating file for 'docker compose' environment variables"
     cp .env.example .env
 fi
 
