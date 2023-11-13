@@ -6,7 +6,7 @@ Initial work in Bristol sprint January 2020 by [esperk](https://github.com/esper
 
 ## Setup
 
-**Requirements:** [Docker](https://www.docker.com/) and Docker Compose (Docker Compose is included with Docker Desktop for Mac and Windows).
+**Requirements:** [Docker](https://www.docker.com/) and Docker Compose version 2.22 and later (Docker Compose is included with Docker Desktop for Mac and Windows).
 
 Open a terminal and follow those instructions:
 
@@ -20,7 +20,7 @@ cd wagtail-dev/
 # 4. Run the setup script. This will check out the bakerydemo project and local copies of wagtail and its dependencies.
 ./setup.sh
 # 5. Build the containers
-docker-compose build
+docker compose build
 ```
 
 It can take a while (typically 15-20 minutes) to fetch and build all dependencies and containers.
@@ -38,10 +38,10 @@ Once the build is complete:
 
 ```sh
 # 6. Start your containers and wait for them to finish their startup scripts.
-docker-compose up
+docker compose up
 ```
 
-You might see a message like this the first time you run your containers. This is normal because the frontend container has not finished building the assets for the Wagtail admin. Just wait a few seconds for the frontend container to finish building (you should see a message like `webpack compiled successfully in 15557 ms` and then stop and start your containers again (Ctrl+C + `docker-compose up`).
+You might see a message like this the first time you run your containers. This is normal because the frontend container has not finished building the assets for the Wagtail admin. Just wait a few seconds for the frontend container to finish building (you should see a message like `webpack compiled successfully in 15557 ms` and then stop and start your containers again (Ctrl+C + `docker compose up`).
 
 ````
 WARNINGS:
@@ -64,7 +64,7 @@ WARNINGS:
 If you're running this on Linux you might get into some privilege issues that can be solved using this command (tested on Ubuntu):
 
 ```sh
-CURRENT_UID=$(id -u):$(id -g) docker-compose -f docker-compose.yml -f docker-compose.linux.yml up
+CURRENT_UID=$(id -u):$(id -g) docker compose -f compose.yaml -f compose.linux.yaml up
 ```
 
 Alternatively, if you're using VSCode and have the "Remote - Containers" extension, you can open the command palette and select "Remote Containers - Reopen in Container" to attach VSCode to the container. This allows for much deeper debugging.
@@ -77,12 +77,11 @@ Alternatively, if you're using VSCode and have the "Remote - Containers" extensi
 ### See a list of running containers
 
 ```sh
-$ docker-compose ps
-  Name                Command               State           Ports
---------------------------------------------------------------------------
-db         docker-entrypoint.sh postgres    Up          5432/tcp
-frontend   docker-entrypoint.sh /bin/ ...   Up
-web        ./manage.py runserver 0.0. ...   Up          0.0.0.0:8000->8000/tcp
+$ docker compose ps
+NAME                     IMAGE                    COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+wagtail-dev-app-1        wagtail-dev-app          "/bin/sh -c 'python …"   app        10 minutes ago   Up 10 minutes             0.0.0.0:8000->8000/tcp
+wagtail-dev-db-1         postgres:16.0-bookworm   "docker-entrypoint.s…"   db         10 minutes ago   Up 10 minutes (healthy)   5432/tcp
+wagtail-dev-frontend-1   wagtail-dev-frontend     "docker-entrypoint.s…"   frontend   10 minutes ago   Up 10 minutes
 ```
 
 ### Build the backend Docker image
@@ -94,7 +93,7 @@ make build
 or
 
 ```sh
-docker-compose build web
+docker compose build app
 ```
 
 ### Bring the backend Docker container up
@@ -106,7 +105,7 @@ make start
 or
 
 ```sh
-docker-compose up
+docker compose up
 ```
 
 ### Stop all Docker containers
@@ -118,7 +117,7 @@ make stop
 or
 
 ```sh
-docker-compose stop
+docker compose stop
 ```
 
 ### Stop all and remove all Docker containers
@@ -130,7 +129,7 @@ make down
 or
 
 ```sh
-docker-compose down
+docker compose down
 ```
 
 ### Run tests
@@ -142,7 +141,7 @@ make test
 or
 
 ```sh
-docker-compose exec -w /code/wagtail web python runtests.py
+docker compose exec -w /code/wagtail app python runtests.py
 ```
 
 ### Run tests for a specific file
@@ -154,7 +153,7 @@ make test file=wagtail.admin.tests.test_name.py
 or
 
 ```sh
-docker-compose exec -w /code/wagtail web python runtests.py wagtail.admin.tests.{test_file_name_here}
+docker compose exec -w /code/wagtail app python runtests.py wagtail.admin.tests.{test_file_name_here}
 ```
 
 ### Format Wagtail codebase
@@ -164,8 +163,8 @@ make format-wagtail
 ```
 or
 ```sh
-docker-compose exec -w /code/wagtail web make format-server
-docker-compose exec frontend make format-client
+docker compose exec -w /code/wagtail app make format-server
+docker compose exec frontend make format-client
 ```
 
 ### Lint Wagtail codebase
@@ -175,9 +174,9 @@ make lint-wagtail
 ```
 or
 ```sh
-docker-compose exec -w /code/wagtail web make lint-server
-docker-compose exec -w /code/wagtail web make lint-docs
-docker-compose exec frontend make lint-client
+docker compose exec -w /code/wagtail app make lint-server
+docker compose exec -w /code/wagtail app make lint-docs
+docker compose exec frontend make lint-client
 ```
 
 ### Open a Django shell session
@@ -189,7 +188,7 @@ make ssh-shell
 or
 
 ```sh
-docker-compose exec web python manage.py shell
+docker compose exec app python manage.py shell
 ```
 
 ### Open a PostgreSQL shell session
@@ -201,7 +200,7 @@ make ssh-db
 or
 
 ```sh
-docker-compose exec web python manage.py dbshell
+docker compose exec app python manage.py dbshell
 ```
 
 ### Open a shell on the web server
@@ -213,7 +212,7 @@ make ssh
 or
 
 ```sh
-docker-compose exec web bash
+docker compose exec app bash
 ```
 
 ### Open a shell to work with the frontend code (Node/NPM)
@@ -225,7 +224,7 @@ make ssh-fe
 or
 
 ```sh
-docker-compose exec frontend bash
+docker compose exec frontend bash
 ```
 
 ### Open a shell to work within the wagtail container
@@ -237,7 +236,7 @@ make ssh-fe
 or
 
 ```sh
-docker-compose exec -w /code/wagtail web bash
+docker compose exec -w /code/wagtail app bash
 ```
 
 ### Make migrations to the wagtail bakery site
@@ -249,7 +248,7 @@ make migrations
 or
 
 ```sh
-docker-compose exec web python manage.py makemigrations
+docker compose exec app python manage.py makemigrations
 ```
 
 ### Migrate the wagtail bakery site
@@ -261,14 +260,14 @@ make migrate
 or
 
 ```sh
-docker-compose exec web python manage.py migrate
+docker compose exec app python manage.py migrate
 ```
 
 ## Getting ready to contribute
 
 Here are other actions you will likely need to do to make your first contribution to Wagtail.
 
-Set up git remotes to Wagtail forks (run these lines outside of the Docker instances, on your machine):
+Set up git remotes to Wagtail forks (run these commands on your machine, not within Docker):
 
 ```sh
 cd ~/Development/wagtail-dev/wagtail
@@ -280,10 +279,8 @@ git remote add upstream git@github.com:wagtail/wagtail.git
 git pull --all
 ```
 
-## Contributing to Willow
-
-You can use the same setup to contribute to Willow.
-You simply do the same operations to fork the Willow project and point your local copy of Willow to your fork.
+You can use the same steps to contribute to any of the dependencies installed in `./libs`.
+By default, `django-modelcluster` and `Willow` are checked out from `git` into this folder.
 
 ## See also
 

@@ -1,0 +1,12 @@
+*
+!**/.env
+!bakerydemo/requirements/*.txt
+!libs/Willow/pyproject.toml
+!libs/Willow/README.md
+!libs/Willow/willow
+!libs/django-modelcluster/setup.py
+!libs/django-modelcluster/README.rst
+!libs/django-modelcluster/modelcluster
+!requirements
+!wagtail/setup.py
+!wagtail/wagtail

@@ -1,0 +1,42 @@
+volumes:
+  postgres-data:
+  node_modules:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app.Dockerfile
+    volumes:
+      - ./wagtail:/code/wagtail
+      - ./libs:/code/libs
+      - ./bakerydemo:/code/bakerydemo
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+
+  db:
+    environment:
+      - "POSTGRES_DB=${DATABASE_NAME}"
+      - "POSTGRES_USER=${DATABASE_USER}"
+      - "POSTGRES_PASSWORD=${DATABASE_PASSWORD}"
+    restart: always
+    image: postgres:16.0-bookworm
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready --quiet --dbname=${DATABASE_URL}"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    volumes:
+      - ./wagtail:/code/wagtail

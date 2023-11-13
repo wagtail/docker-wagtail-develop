@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
         ./setup.sh
-        docker build . --file Dockerfile --tag docker-wagtail-develop:$(date +%s)
+        docker build . --file docker/app.Dockerfile --tag docker-wagtail-develop:$(date +%s)

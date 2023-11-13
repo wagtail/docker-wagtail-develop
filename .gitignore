@@ -1,6 +1,7 @@
 wagtail
 bakerydemo
 libs
+.env
 .idea
 .vscode
 .DS_Store
