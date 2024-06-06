@@ -148,7 +148,7 @@ docker-compose exec -w /code/wagtail web python runtests.py
 ### Run tests for a specific file
 
 ```sh
-make test file=wagtail.admin.tests.test_name.py
+make test file=wagtail.admin.tests.test_name
 ```
 
 or
