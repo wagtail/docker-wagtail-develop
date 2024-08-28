@@ -264,6 +264,24 @@ or
 docker compose exec web python manage.py migrate
 ```
 
+### Destroy the current database volume
+
+If this project has changed database versions since you first started using it, you may need to
+delete the database volume and then recreate the bakerydemo data using the `setup-db.sh script`. To
+delete all the data from the database running in the `db` container, run the following commands:
+
+```sh
+make down
+make destroy-db
+```
+
+or
+
+```sh
+docker compose down
+docker volume rm docker-wagtail-develop_postgres-data
+```
+
 ## Getting ready to contribute
 
 Here are other actions you will likely need to do to make your first contribution to Wagtail.
