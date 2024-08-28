@@ -21,9 +21,10 @@ services:
     depends_on:
       - db
       - frontend
+
   db:
     container_name: "db"
-    image: postgres:12.3-alpine
+    image: postgres:14.1
     environment:
       POSTGRES_USER: wagtail
       POSTGRES_DB: wagtail
@@ -33,6 +34,7 @@ services:
     restart: "no"
     expose:
       - "5432"
+
   frontend:
     container_name: "frontend"
     build:
