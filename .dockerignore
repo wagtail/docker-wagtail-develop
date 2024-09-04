@@ -4,6 +4,7 @@
 **/node_modules
 **/Dockerfile
 **/docker-compose.yml
+**/compose.yaml
 **/Procfile
 **/Vagrantfile
 **/.devcontainer
