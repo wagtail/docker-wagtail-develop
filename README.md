@@ -64,7 +64,7 @@ WARNINGS:
 If you're running this on Linux you might get into some privilege issues that can be solved using this command (tested on Ubuntu):
 
 ```sh
-CURRENT_UID=$(id -u):$(id -g) docker compose -f docker-compose.yml -f docker-compose.linux.yml up
+CURRENT_UID=$(id -u):$(id -g) docker compose -f compose.yaml -f compose.linux.yaml up
 ```
 
 Alternatively, if you're using VSCode and have the "Remote - Containers" extension, you can open the command palette and select "Remote Containers - Reopen in Container" to attach VSCode to the container. This allows for much deeper debugging.
