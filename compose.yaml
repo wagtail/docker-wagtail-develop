@@ -1,9 +1,7 @@
-version: '3'
-
 volumes:
   postgres-data:
   node_modules:
-  
+
 services:
   web:
     container_name: "web"
