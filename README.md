@@ -142,7 +142,7 @@ make test
 or
 
 ```sh
-docker compose exec -w /code/wagtail web python runtests.py
+docker compose exec -w /code/wagtail web python runtests.py --parallel
 ```
 
 ### Run tests for a specific file

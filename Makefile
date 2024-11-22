@@ -41,7 +41,7 @@ migrate: ## Migrate the wagtail bakery site migrations
 	docker compose exec web python manage.py migrate
 
 test: ## Run all wagtail tests or pass in a file with `make test file=wagtail.admin.tests.test_name`
-	docker compose exec -w /code/wagtail web python runtests.py $(file) $(FILE)
+	docker compose exec -w /code/wagtail web python runtests.py $(file) $(FILE) --parallel
 
 format-wagtail: ## Format Wagtail repo
 	docker compose exec -w /code/wagtail web make format-server
