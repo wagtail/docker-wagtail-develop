@@ -43,7 +43,7 @@ migrate: ## Migrate the wagtail bakery site migrations
 test: ## Run all wagtail tests or pass in a file with `make test file=wagtail.admin.tests.test_name`
 	docker compose exec -w /code/wagtail web python runtests.py $(file) $(FILE)
 
-test-parallel: ## Same as make test but will run tests in parallel
+test-parallel: ## Equivalent to make test, but runs tests in parallel
 	docker compose exec -w /code/wagtail web python runtests.py $(file) $(FILE) --parallel
 	
 format-wagtail: ## Format Wagtail repo

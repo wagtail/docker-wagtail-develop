@@ -136,6 +136,7 @@ docker compose down
 ### Run tests
 
 ```sh
+# run make test-parallel for tests to run faster but error messages can be more cryptic
 make test
 ```
 
