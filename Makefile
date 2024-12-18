@@ -31,6 +31,9 @@ ssh-wagtail: ## Enter the running Docker container for the wagtail development e
 ssh-db: ## Open a PostgreSQL shell session
 	docker compose exec web python manage.py dbshell
 
+destroy-db: ## Remove the volume containing the PostgreSQL data
+	docker volume rm docker-wagtail-develop_postgres-data
+
 down: ## Stop and remove all Docker containers
 	docker compose down
 
