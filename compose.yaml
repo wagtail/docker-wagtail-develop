@@ -23,7 +23,7 @@ services:
       - frontend
   db:
     container_name: "db"
-    image: postgres:12.3-alpine
+    image: postgres:13.18-alpine3.20
     environment:
       POSTGRES_USER: wagtail
       POSTGRES_DB: wagtail
