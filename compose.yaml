@@ -24,7 +24,7 @@ services:
 
   db:
     container_name: "db"
-    image: postgres:14.1
+    image: postgres:14
     environment:
       POSTGRES_USER: wagtail
       POSTGRES_DB: wagtail
