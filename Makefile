@@ -11,7 +11,7 @@ build: ## Build the backend Docker image
 	docker compose build web
 
 start: ## Bring the backend Docker container up
-	docker compose up
+	docker compose up web
 
 stop: ## Stop the backend Docker container
 	docker compose stop
