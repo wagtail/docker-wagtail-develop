@@ -38,7 +38,7 @@ Once the build is complete:
 
 ```sh
 # 6. Start your containers and wait for them to finish their startup scripts.
-docker compose up
+docker compose up web
 ```
 
 You might see a message like this the first time you run your containers. This is normal because the frontend container has not finished building the assets for the Wagtail admin. Just wait a few seconds for the frontend container to finish building (you should see a message like `webpack compiled successfully in 15557 ms` and then stop and start your containers again (Ctrl+C + `docker compose up`).
@@ -306,3 +306,13 @@ You simply do the same operations to fork the Willow project and point your loca
 ## See also
 
 - [Vagrant Wagtail development](https://github.com/wagtail/vagrant-wagtail-develop)
+
+## Testing with Elasticsearch
+
+To test the Wagtail search with the [Elasticsearch backend](https://docs.wagtail.org/en/stable/topics/search/backends.html#elasticsearch-backend) or OpenSearch, use the additional service:
+
+```sh
+docker compose up web elastic
+```
+
+Then install any dependencies and configure Wagtail per the developer documentation, configuring the search backend to use `http://elastic:9200` as the URL.

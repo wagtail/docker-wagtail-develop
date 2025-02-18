@@ -47,3 +47,13 @@ services:
     command: bash -c "echo 'Copying node_modules, this may take a few minutes...' && rsync -rah --info=progress2 /node_modules /code/wagtail/ && npm run start"
     restart: "no"
     tty: true
+
+  elastic:
+    container_name: elastic
+    image: elasticsearch:8.17.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
