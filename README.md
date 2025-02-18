@@ -136,13 +136,14 @@ docker compose down
 ### Run tests
 
 ```sh
+# run make test-parallel for tests to run faster but error messages can be more cryptic
 make test
 ```
 
 or
 
 ```sh
-docker compose exec -w /code/wagtail web python runtests.py
+docker compose exec -w /code/wagtail web python runtests.py --parallel
 ```
 
 ### Run tests for a specific file
